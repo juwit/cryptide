@@ -1,6 +1,6 @@
 package io.github.juwit.cryptide
 
-enum class CellType{
+enum class CellType {
     LAKE, MOUNTAIN, FOREST, DESERT, SWAMP
 }
 
@@ -12,4 +12,10 @@ enum class StructType {
     NONE, CABAN, MONOLITH
 }
 
-data class Cell(val type: CellType, val animalType: AnimalType = AnimalType.NONE, val structType: StructType = StructType.NONE)
+class Cell(
+    val type: CellType,
+    val animalType: AnimalType = AnimalType.NONE,
+    val structType: StructType = StructType.NONE
+) {
+    var neighbors = listOf<Cell>()
+}
