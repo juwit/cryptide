@@ -19,3 +19,9 @@ class OneCellAwayTypeRule(val type: CellType) : Rule {
         return cell.type == this.type || cell.neighbors.any { it.type == this.type }
     }
 }
+
+class OneCellAwayFromAnimalRule() : Rule {
+    override fun appliesTo(cell: Cell): Boolean {
+        return cell.animalType != AnimalType.NONE || cell.neighbors.any { it.animalType != AnimalType.NONE }
+    }
+}
