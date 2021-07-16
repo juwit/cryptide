@@ -32,5 +32,12 @@ class TwoCellsAwayFromStructureRule(val structType: StructType) : Rule {
                 || cell.neighbors.any { it.structType == structType }
                 || cell.neighbors.flatMap { it.neighbors }.any { it.structType == structType }
     }
+}
 
+class TwoCellsAwayFromAnimalRule(val animalType: AnimalType) : Rule {
+    override fun appliesTo(cell: Cell): Boolean {
+        return cell.animalType == animalType
+                || cell.neighbors.any { it.animalType == animalType }
+                || cell.neighbors.flatMap { it.neighbors }.any { it.animalType == animalType }
+    }
 }
