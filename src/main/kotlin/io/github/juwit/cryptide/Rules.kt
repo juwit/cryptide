@@ -28,9 +28,9 @@ class OneCellAwayFromAnimalRule() : Rule {
 
 class TwoCellsAwayFromStructureRule(val structType: StructType) : Rule {
     override fun appliesTo(cell: Cell): Boolean {
-        return cell.structType == structType
-                || cell.neighbors.any { it.structType == structType }
-                || cell.neighbors.flatMap { it.neighbors }.any { it.structType == structType }
+        return cell.struct?.type == structType
+                || cell.neighbors.any { it.struct?.type == structType }
+                || cell.neighbors.flatMap { it.neighbors }.any { it.struct?.type == structType }
     }
 }
 
@@ -39,5 +39,14 @@ class TwoCellsAwayFromAnimalRule(val animalType: AnimalType) : Rule {
         return cell.animalType == animalType
                 || cell.neighbors.any { it.animalType == animalType }
                 || cell.neighbors.flatMap { it.neighbors }.any { it.animalType == animalType }
+    }
+}
+
+class ThreeCellsAwayFromColoredStructRule(val structColor: StructColor) : Rule {
+    override fun appliesTo(cell: Cell): Boolean {
+        return cell.struct?.color == structColor
+                || cell.neighbors.any { it.struct?.color == structColor }
+                || cell.neighbors.flatMap { it.neighbors }.any { it.struct?.color == structColor }
+                || cell.neighbors.flatMap { it.neighbors.flatMap { cell -> cell.neighbors  } }.any { it.struct?.color == structColor }
     }
 }
